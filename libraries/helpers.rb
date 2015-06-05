@@ -19,6 +19,7 @@
 #
 require 'pathname'
 require 'uri'
+require 'nokogiri'
 
 module PlexAppCookbook
   module Helpers
@@ -39,15 +40,31 @@ module PlexAppCookbook
       # what we can to automatically construct the URI based on the
       # platform.
       #
+      version = plexapp_package_version
+
       return node['plexapp']['url'] if node['plexapp']['url']
       plex_url = 'https://downloads.plex.tv'
       plex_url << '/plex-media-server/'
-      plex_url << node['plexapp']['version']
+      plex_url << version
       # ternary operators inside your interpolated string: everything is just fine.
       plex_url << "/#{plexapp_file_name}#{platform_family?('debian') ? '_' : '-'}"
-      plex_url << node['plexapp']['version']
+      plex_url << version
       plex_url << plexapp_file_ext
       return plex_url.to_s
+    end
+
+    def plexapp_package_version
+      if node['plexapp']['latest']
+        # page = Nokogiri::HTML('https://plex.tv/downloads')
+        # page.xpath("//span[@class='linux ubuntu']/../h3[2]/p")
+        # return dragons
+      else
+        return node['plexapp']['version']
+      end
+    rescue
+      puts "Failed fetching newest package version, falling back to "
+        + node['plexapp']['version']
+      return node['plexapp']['version']
     end
 
     def plexapp_file_ext
