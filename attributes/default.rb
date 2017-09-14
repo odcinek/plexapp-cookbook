@@ -2,7 +2,7 @@
 # construct the URL (and cached package file) with the helper library
 # method, plexapp_package_url, and plexapp_package_file.
 #
-default['plexapp']['version'] = '1.8.2.4209-b1d4aa012'
+default['plexapp']['version'] = '1.9.0.4252-d07c1f408'
 
 # Specify the package URL to download here. The helper method will use
 # this instead of constructing it with the version, above, from the

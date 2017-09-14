@@ -7,10 +7,10 @@ export PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=<%= node['plexapp']['max_plugin_procs'
 export PLEX_MEDIA_SERVER_MAX_STACK_SIZE=<%= node['plexapp']['max_stack_size'] %>
 
 # where the mediaserver should store the transcodes
-export PLEX_MEDIA_SERVER_TMPDIR="<%= node['plexapp']['tmpdir'] %>"
+export PLEX_MEDIA_SERVER_TMPDIR=<%= node['plexapp']['tmpdir'] %>
 
 # uncomment to set it to something else
-export PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR="<%= node['plexapp']['application_support_dir'] %>"
+# export PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR="<%= node['plexapp']['application_support_dir'] %>"
 
 # the user that PMS should run as, defaults to 'plex'
 # note that if you change this you might need to move
